@@ -93,6 +93,7 @@ trait ModuleMethods
      */
     public function activeMenu($activeKey = null)
     {
+        Menu::removeActiveKey($this->menuName);
         Menu::addActiveKey($this->menuName, $activeKey ? $activeKey : $this->module);
     }
 

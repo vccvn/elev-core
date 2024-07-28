@@ -182,7 +182,7 @@ class Menu extends HtmlDom
 
     public function __construct($menu = null, array $options = [], int $level = 0, $parent = null)
     {
-        if (!self::$active_url) self::$active_url = URL::full();
+        self::$active_url = URL::full();
         // tao doi tuong option de truy cap key khong phai check isset
         $opt = new Arr($options);
         // gan gia tri
@@ -298,10 +298,14 @@ class Menu extends HtmlDom
 
     public static function removeActiveKey($name = 'default', $active_key = null)
     {
-        if (!isset(self::$active_keys[$name]) || !$active_key) return true;
-        if(in_array($active_key, self::$active_keys[$name])){
+        if (!isset(self::$active_keys[$name])) return true;
+        if(!$active_key){
+            self::$active_keys[$name] = [];
+            return true;
+        }
+        if (in_array($active_key, self::$active_keys[$name])) {
             $index = array_search($active_key, self::$active_keys[$name]);
-            if($index>=0)
+            if ($index >= 0)
                 array_splice(self::$active_keys, $index, 1);
         }
     }
@@ -409,8 +413,8 @@ class Menu extends HtmlDom
             }
         } elseif ($t == 'list') {
             $menuList = $menu->list ? $menu->list : ($menu->data ? $menu->data : ($menu->items ? $menu->items : ([]
-                    )
-                )
+            )
+            )
             );
         } elseif ($menu->get(0)) {
             $menuList = $menu->all();
