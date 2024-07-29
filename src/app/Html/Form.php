@@ -119,7 +119,7 @@ class Form extends HtmlDom implements Countable, ArrayAccess, IteratorAggregate,
 
             $input = new Arr($inp);
 
-            if (($actionType == 'create' && ($input->HideOnCreate || $input->showOnUpdate)) || ($actionType == 'updadte' && ($input->HideOnUpdate || $input->showOnCreate))){
+            if (($actionType == 'create' && ($input->hideOnCreate || $input->showOnUpdate)) || ($actionType == 'updadte' && ($input->HideOnUpdate || $input->showOnCreate))){
                 continue;
             }
             if (!$input->name) $input->name = $nsp;
@@ -264,7 +264,7 @@ class Form extends HtmlDom implements Countable, ArrayAccess, IteratorAggregate,
                             foreach ($inputs as $namespace => $inp) {
                                 if (in_array($inp->type, $this->availableForGroup) && !in_array($namespace, $this->notInGroup)) {
                                     $this->inGroup[] = $namespace;
-                                    $input->appendGroup[$name] = $inp;
+                                    $input->appendGroup[$namespace] = $inp;
                                     $inp->append_group = [];
                                     $inp->prepend_group = [];
                                     if (!in_array($name, $this->notInGroup) && $lock) {
@@ -284,7 +284,7 @@ class Form extends HtmlDom implements Countable, ArrayAccess, IteratorAggregate,
                             foreach ($inputs as $namespace => $inp) {
                                 if (in_array($inp->type, $this->availableForGroup) && !in_array($namespace, $this->notInGroup)) {
                                     $this->inGroup[] = $namespace;
-                                    $input->prependGroup[$name] = $inp;
+                                    $input->prependGroup[$namespace] = $inp;
                                     $inp->append_group = [];
                                     $inp->prepend_group = [];
                                     if (!in_array($name, $this->notInGroup) && $lock) {
@@ -373,7 +373,7 @@ class Form extends HtmlDom implements Countable, ArrayAccess, IteratorAggregate,
 
     /**
      * lấy thông tin input
-     * @param string
+     * @param string $name
      * @return array|object|null
      */
     public function get(...$names)
@@ -386,8 +386,8 @@ class Form extends HtmlDom implements Countable, ArrayAccess, IteratorAggregate,
             else $list = $names;
             $inputs = [];
             foreach ($list as $name) {
-                if ($this->$name) {
-                    $inputs[$name] = $this->$name;
+                if (array_key_exists($name, $this->_data)) {
+                    $inputs[$name] = $this->_data[$name];
                 }
             }
             return $inputs;
