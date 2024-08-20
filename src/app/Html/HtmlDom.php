@@ -722,7 +722,7 @@ class HtmlDom implements Htmlable
             return ($this->contentType == 'html') ? htmlentities($cont) : $cont;
         }
         $this->contentType = 'text';
-        $this->innerContent = [htmlentities($content)];
+        $this->innerContent = [htmlentities(is_array($content)?json_encode($content, JSON_PRETTY_PRINT):$content)];
         return $this;
     }
 
