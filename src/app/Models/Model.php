@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * @property bool $multilang chế độ đa ngôn ngữ
  * @property string $localeTitleColumn cột tiêu đề đa ngôn ngữ sẽ dc 
+ * @property-read int $id
  */
 class Model extends BaseModel
 {

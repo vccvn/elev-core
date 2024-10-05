@@ -6,6 +6,9 @@ use Gomee\Constants\DbConnectionConstant;
 // use Jenssegers\Mongodb\Eloquent\Model as BaseModel;
 // use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 
+/**
+ * @property-read string $_id
+ */
 class MongoModel extends Model
 {
     use ModelEventMethods, ModelFileMethods, CommonMethods, Uuid;
