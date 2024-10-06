@@ -130,7 +130,7 @@ if (!function_exists('make_controller')) {
             'client' => 'Clients',
             'cms' => 'CMS',
             'admin' => 'Admin',
-            'app' => 'Apps',
+            'app' => 'App',
             'account' => 'Accounts',
             'manager' => 'Manager',
             'branch' => 'Branch',
@@ -156,15 +156,15 @@ if (!function_exists('make_controller')) {
         if (count($te) > 1) {
             $type = $te[0];
             $subSystem = $te[1] .'.';
-            $subName = ($te[0] == 'ai'? 'AI': ucfirst($te[1])) . "\\";
+            $subName = ($te[0] == 'ai'? 'AI': ucfirst($te[1] == 'app'? 'apps': $te[1])) . "\\";
         }
         if (!array_key_exists($t = strtolower($type), $folders) || !$name) return null;
         $s = implode('/', array_map('ucfirst', $ac));
-        $folder = $folders[$t] . ($s ? '/' . $s : '');
+        $folder = ($folders[$t] . ($t == 'app'?'s':'')) . ($s ? '/' . $s : '');
         $master = ucfirst($t);
         $prectr = $master;
         if ($master) {
-            $prectr = $folders[$t] . "\\" . $master;
+            $prectr = ($folders[$t] == 'App'? 'Apps': $folders[$t]) . "\\" . $master;
         }
         $sub = null;
         if ($folder) {
