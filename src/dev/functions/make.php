@@ -130,6 +130,7 @@ if (!function_exists('make_controller')) {
             'client' => 'Clients',
             'cms' => 'CMS',
             'admin' => 'Admin',
+            'app' => 'App',
             'account' => 'Accounts',
             'manager' => 'Manager',
             'branch' => 'Branch',
