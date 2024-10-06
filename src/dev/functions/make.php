@@ -130,7 +130,7 @@ if (!function_exists('make_controller')) {
             'client' => 'Clients',
             'cms' => 'CMS',
             'admin' => 'Admin',
-            'app' => 'App',
+            'app' => 'Apps',
             'account' => 'Accounts',
             'manager' => 'Manager',
             'branch' => 'Branch',
@@ -155,7 +155,6 @@ if (!function_exists('make_controller')) {
         $subName = null;
         if (count($te) > 1) {
             $type = $te[0];
-
             $subSystem = $te[1] .'.';
             $subName = ($te[0] == 'ai'? 'AI': ucfirst($te[1])) . "\\";
         }
