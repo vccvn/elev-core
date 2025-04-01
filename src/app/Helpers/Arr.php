@@ -562,7 +562,7 @@ class Arr implements Countable, ArrayAccess, IteratorAggregate, JsonSerializable
      * @param string $prefix
      * @return static
      */
-    public function makeByPrefix(string $prefix = null, $has_value = false, $parse_value = null, $delete_prefix = true)
+    public function makeByPrefix(string $prefix = '', $has_value = false, $parse_value = null, $delete_prefix = true)
     {
         if ($data = $this->prefix($prefix, $has_value, $parse_value, $delete_prefix)) {
             return new static($data);
@@ -863,7 +863,7 @@ class Arr implements Countable, ArrayAccess, IteratorAggregate, JsonSerializable
      * @param boolean $delete_prefix
      * @return array
      */
-    protected static function __prefix(array $array, string $prefix = null, $has_value = false, $parse_value = null, $delete_prefix = false)
+    protected static function __prefix(array $array, string $prefix = '', $has_value = false, $parse_value = null, $delete_prefix = false)
     {
         $data = [];
         // nếu có prefix
